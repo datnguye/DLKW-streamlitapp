@@ -66,7 +66,7 @@ def submit_complain(name, email, content):
         st.error("Email is required")
         st.stop()
         
-    if not contetnt:
+    if not content:
         st.error("Complaination is required")
         st.stop()
         
@@ -95,6 +95,6 @@ with st.form(key="form_complaination", clear_on_submit=True):
         kwargs=dict(
             name=name, 
             email=email, 
-            complaination,complaination
+            content=complaination
         )
     )
