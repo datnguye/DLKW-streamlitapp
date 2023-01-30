@@ -29,7 +29,6 @@ def run_query_scalar(query):
         return cur.fetchone()
     
     
-@st.experimental_memo(ttl=600)
 def execute_no_query(query):
     with conn.cursor() as cur:
         cur.execute(query)
