@@ -62,15 +62,6 @@ st.write(df2[3])
 
 # Let's create form for complaination
 def submit_complain(name, email, content):
-    if not email:
-        st.error("Email is required")
-        st.stop()
-        
-    if not content:
-        st.error("Complaination is required")
-        st.stop()
-        
-    st.success("Your feedback has been sent! ✅")
     # record into snowflake
     execute_no_query("""
         create table if not exists customer_complaination (name varchar, email varchar, content varchar)
@@ -78,6 +69,7 @@ def submit_complain(name, email, content):
     execute_no_query(f"""
         insert into customer_complaination values ('{name}','{email}','{content}')
     """)
+    st.success("Your feedback has been sent! ✅")
     
 with st.form(key="form_complaination", clear_on_submit=True):
     st.write("Feed us your apple")
@@ -87,7 +79,13 @@ with st.form(key="form_complaination", clear_on_submit=True):
         ti_name = st.text_input("Name")
     with c2:
         ti_email = st.text_input("Email")
+        if not ti_email:
+            st.error("Email is required")
+            st.stop()
     tae_complaination = st.text_area(label="What would you like us to improve?")
+    if not tae_complaination:
+        st.error("Email is required")
+        st.stop()
     
     submit = st.form_submit_button(
         label="Complains",
