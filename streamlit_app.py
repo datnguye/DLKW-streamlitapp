@@ -67,7 +67,7 @@ def submit_complain(name, email, content):
         create table if not exists customer_complaination (name varchar, email varchar, content varchar)
     """)
     execute_no_query(f"""
-        insert into customer_complaination values ('{name}','{email}','{complaination}')
+        insert into customer_complaination values ('{name}','{email}','{content}')
     """)
     
 with st.form(key="form_complaination", clear_on_submit=True):
