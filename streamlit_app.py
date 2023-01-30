@@ -76,7 +76,6 @@ with st.form(key="form_complaination", clear_on_submit=True):
 if submit:
     if not email:
         st.error("Email is required")
-        st.focus(email)
         st.stop()
         
     st.success("Your feedback has been sent! ✅")
