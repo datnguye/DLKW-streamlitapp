@@ -85,7 +85,7 @@ if submit:
     """)
     execute_no_query(f"""
         insert into customer_complaination values ('{name}','{email}','{complaination}')
-    """
+    """)
     
     
     
