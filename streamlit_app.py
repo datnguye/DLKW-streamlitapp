@@ -70,7 +70,6 @@ def submit_complain(name, email, content):
         execute_no_query(f"""
             insert into customer_complaination values ('{name}','{email}','{content}')
         """)
-        st.success("Your feedback has been sent! ✅")
     
 with st.form(key="form_complaination"):
     st.write("Feed us your apple")
@@ -99,3 +98,4 @@ if submit:
     if not ti_email:
         st.error("Email is required")
         st.stop()
+    st.success("Your feedback has been sent! ✅")
