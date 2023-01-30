@@ -66,9 +66,9 @@ with st.form(key="form_complaination", clear_on_submit=True):
     c1, c2 = st.columns(2)
     
     with c1:
-        name = st.text_input("Name", autocomplete=True)
+        name = st.text_input("Name")
     with c2:
-        email = st.text_input("Email", autocomplete=True)
+        email = st.text_input("Email")
     complaination = st.text_area(placeholder="What would you like us to improve?")
     
     submit = st.form_submit_button(label="Complains")
