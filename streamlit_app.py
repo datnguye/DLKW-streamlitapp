@@ -94,7 +94,7 @@ with st.form(key="form_complaination", clear_on_submit=True):
     
 if submit:
     if not tae_complaination:
-        st.error("Email is required")
+        st.error("Complaination is required")
         st.stop()
     if not ti_email:
         st.error("Email is required")
