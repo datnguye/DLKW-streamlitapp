@@ -72,7 +72,7 @@ def submit_complain(name, email, content):
         """)
         st.success("Your feedback has been sent! ✅")
     
-with st.form(key="form_complaination", clear_on_submit=True):
+with st.form(key="form_complaination"):
     st.write("Feed us your apple")
     c1, c2 = st.columns(2)
     
