@@ -75,26 +75,26 @@ with st.form(key="form_complaination", clear_on_submit=True):
     c1, c2 = st.columns(2)
     
     with c1:
-        name = st.text_input("Name")
+        ti_name = st.text_input("Name")
     with c2:
-        email = st.text_input("Email")
-    complaination = st.text_area(label="What would you like us to improve?")
+        ti_email = st.text_input("Email")
+    tae_complaination = st.text_area(label="What would you like us to improve?")
     
     submit = st.form_submit_button(
         label="Complains",
         on_click=submit_complain,
         kwargs=dict(
-            name=name, 
-            email=email, 
-            content=complaination
+            name=ti_name, 
+            email=ti_email, 
+            content=tae_complaination
         )
     )
 if submit:
-    if not email:
+    if not ti_name:
         st.error("Email is required")
         st.stop()
         
-    if not content:
+    if not tae_complaination:
         st.error("Complaination is required")
         st.stop()
         
