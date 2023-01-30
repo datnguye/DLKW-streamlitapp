@@ -61,9 +61,12 @@ st.write('Sizes Available: ',df2[2])
 st.write(df2[3])
 
 # Let's create form for complaination
-with st.form(key="form_complaination", clear_on_submit=True, label="Feed us your apple"):
+with st.form(key="form_complaination", clear_on_submit=True):
+    st.write("Feed us your apple")
+    
     name = st.text_input("Your name")
     email = st.text_input("Email")
+    
     complaination = st.text_input("What would you like us to improve?")
     
     submit = st.form_submit_button(label="Complains")
