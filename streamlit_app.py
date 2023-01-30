@@ -66,21 +66,26 @@ with st.form(key="form_complaination", clear_on_submit=True):
     c1, c2 = st.columns(2)
     
     with c1:
-        name = st.text_input("Name")
+        name = st.text_input("Name", autocomplete=True)
     with c2:
-        email = st.text_input("Email")
-    complaination = st.text_input("What would you like us to improve?")
+        email = st.text_input("Email", autocomplete=True)
+    complaination = st.text_area(placeholder="What would you like us to improve?")
     
     submit = st.form_submit_button(label="Complains")
 if submit:
+    if not email:
+        st.error("Email is required")
+        st.focus(email)
+        st.stop()
+        
     st.success("Your feedback has been sent! ✅")
     # record into snowflake
     execute_no_query("""
-        create table if not exists Customer_Complaination (name varchar, email varchar, content varchar)
+        create table if not exists customer_complaination (name varchar, email varchar, content varchar)
     """)
     execute_no_query(f"""
-        insert into Customer_Complaination values ('{name}','{email}','{complaination}')
-    """)
+        insert into customer_complaination values ('{name}','{email}','{complaination}')
+    """
     
     
     
