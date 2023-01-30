@@ -27,6 +27,12 @@ def run_query_scalar(query):
     with conn.cursor() as cur:
         cur.execute(query)
         return cur.fetchone()
+    
+    
+@st.experimental_memo(ttl=600)
+def execute_no_query(query):
+    with conn.cursor() as cur:
+        cur.execute(query)
 
       
 # run a snowflake query and put it all in a var called my_catalog
@@ -53,3 +59,24 @@ st.image(df2[0], width=400, caption= product_caption)
 st.write('Price: ', df2[1])
 st.write('Sizes Available: ',df2[2])
 st.write(df2[3])
+
+# Let's create form for complaination
+with st.form(key="form_complaination", clear_on_submit=true):
+    name = st.text_input("Your name")
+    email = st.text_input("Email")
+    complaination = st.text_input("What would you like us to improve?")
+    
+    submit = st.form_submit_button(label="Complains")
+if submit:
+    st.success("Your feedback has been sent! ✅")
+    # record into snowflake
+    execute_no_query("""
+        create table if not exists Customer_Complaination (name varchar, email varchar, content varchar)
+    """)
+    execute_no_query(f"""
+        insert into Customer_Complaination values ('{name}','{email}','{complaination}')
+    """)
+    
+    
+    
+    
