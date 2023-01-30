@@ -72,11 +72,9 @@ with st.form(key="form_complaination", clear_on_submit=True):
     complaination = st.text_area(placeholder="What would you like us to improve?")
     
     submit = st.form_submit_button(label="Complains")
+    
 if submit:
-    if not email:
-        st.error("Email is required")
-        st.focus(email)
-        st.stop()
+
         
     st.success("Your feedback has been sent! ✅")
     # record into snowflake
